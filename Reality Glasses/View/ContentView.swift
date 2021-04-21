@@ -9,18 +9,49 @@ import ARKit
 import SwiftUI
 import RealityKit
 
-struct ContentView : View {
-    var body: some View {
-        return ARViewContainer().edgesIgnoringSafeArea(.all)
-    }
+enum KindOfMasks: String, CaseIterable {
+    case none = "None"
+    case simple = "Simple"
+    case complex = "Complex"
 }
 
+struct ContentView : View {
+    
+    @State private var selection: KindOfMasks = .none
+    
+    var body: some View {
+        
+        VStack {
+            Section() {
+                ARViewContainer(selection: selection).edgesIgnoringSafeArea(.all)
+            }
+
+            Section(header: Text("Choose mask")) {
+                
+                Picker("", selection: $selection) {
+                    ForEach(KindOfMasks.allCases, id: \.self) {
+                        Text($0.rawValue)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding(.horizontal)
+            }
+        }
+    }
+       
+}
+
+
+
 struct ARViewContainer: UIViewRepresentable {
+    
+    var selection: KindOfMasks
     
     func makeUIView(context: Context) -> ARView {
         
         // Create ARView
         let arView = ARView(frame: .zero)
+        
         
         // Check face tracking feature
         guard ARFaceTrackingConfiguration.isSupported  else {
@@ -35,28 +66,41 @@ struct ARViewContainer: UIViewRepresentable {
         // Run face tracking session
         arView.session.run(configuration, options: [])
         
-        // Create face anchor
-        let faceAnchor = AnchorEntity(.face)
-        
-        // Add box to the anchor
-        faceAnchor.addChild(createCircle(x: 0.035, y: 0.025, z: 0.06))
-        faceAnchor.addChild(createCircle(x: -0.035, y: 0.025, z: 0.06))
-        faceAnchor.addChild(createSphere(z: 0.06, radius: 0.025))
-        
-        // Add face anchor to the scene
-        arView.scene.anchors.append(faceAnchor)
-        
-        
         return arView
         
     }
     
-    func updateUIView(_ uiView: ARView, context: Context) {}
+    func updateUIView(_ uiView: ARView, context: Context) {
+        
+        // Remove all existing anchors
+        uiView.scene.anchors.removeAll()
+        
+        // Create face anchor
+        let faceAnchor = AnchorEntity(.face)
+        
+        
+        // Add mask to the anchor
+        switch selection {
+        case .none:
+            break
+        case .simple:
+            faceAnchor.addChild(createCircle(x: 0.035, y: 0.025, z: 0.06, opacity: true))
+            faceAnchor.addChild(createCircle(x: -0.035, y: 0.025, z: 0.06, opacity: true))
+        case .complex:
+            faceAnchor.addChild(createCircle(x: 0.035, y: 0.025, z: 0.06))
+            faceAnchor.addChild(createCircle(x: -0.035, y: 0.025, z: 0.06))
+            faceAnchor.addChild(createSphere(z: 0.06, radius: 0.025))
+        }
+        
+        // Add face anchor to the scene
+        uiView.scene.anchors.append(faceAnchor)
+        
+    }
     
     
     // MARK: - Methods
     
-    func createBox() -> Entity {
+    private func createBox() -> Entity {
         
         // Create mesh (geometry)
         let mesh = MeshResource.generateBox(size: 0.2)
@@ -67,13 +111,19 @@ struct ARViewContainer: UIViewRepresentable {
         return entity
     }
     
-    func createCircle(x: Float = 0, y: Float = 0, z: Float = 0) -> Entity {
+    private func createCircle(x: Float = 0, y: Float = 0, z: Float, opacity: Bool = false) -> Entity {
         
         // Create mesh (geometry)
         let mesh = MeshResource.generateBox(size: 0.05, cornerRadius: 0.025)
         
         // Create material
-        let material = SimpleMaterial(color: .blue, isMetallic: true)
+        var material = SimpleMaterial(color: .green, isMetallic: true)
+        
+        if opacity {
+            material.baseColor = MaterialColorParameter.color(.init(red: 0.0, green: 1.0, blue: 1.0, alpha: 0.4))
+        }
+        
+
         
         // Create entity
         let entity = ModelEntity(mesh: mesh, materials: [material])
@@ -86,7 +136,7 @@ struct ARViewContainer: UIViewRepresentable {
         return entity
     }
     
-    func createSphere(x: Float = 0, y: Float = 0, z: Float = 0, color: UIColor = .red, radius: Float = 1) -> Entity {
+    private func createSphere(x: Float = 0, y: Float = 0, z: Float = 0, color: UIColor = .red, radius: Float = 1) -> Entity {
         
         // Create mesh (geometry)
         let mesh = MeshResource.generateSphere(radius: radius)

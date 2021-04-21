@@ -9,23 +9,23 @@
 /* Begin PBXBuildFile section */
 		122C6B0A261101D100BDB917 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122C6B09261101D100BDB917 /* AppDelegate.swift */; };
 		122C6B0C261101D100BDB917 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122C6B0B261101D100BDB917 /* ContentView.swift */; };
-		122C6B10261101D500BDB917 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 122C6B0F261101D500BDB917 /* Assets.xcassets */; };
 		122C6B13261101D500BDB917 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 122C6B12261101D500BDB917 /* Preview Assets.xcassets */; };
 		122C6B16261101D500BDB917 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 122C6B14261101D500BDB917 /* LaunchScreen.storyboard */; };
 		122C6B212611178B00BDB917 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 122C6B202611178B00BDB917 /* 1.png */; };
 		122C6B242611193C00BDB917 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 122C6B232611193C00BDB917 /* README.md */; };
+		125F3F992630B67B00F7AA53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 125F3F982630B67B00F7AA53 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		122C6B06261101D100BDB917 /* Reality Glasses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Reality Glasses.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		122C6B09261101D100BDB917 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		122C6B0B261101D100BDB917 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		122C6B0F261101D500BDB917 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		122C6B12261101D500BDB917 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		122C6B15261101D500BDB917 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		122C6B17261101D500BDB917 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		122C6B202611178B00BDB917 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		122C6B232611193C00BDB917 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		125F3F982630B67B00F7AA53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,11 +60,8 @@
 			isa = PBXGroup;
 			children = (
 				122C6B1F2611177600BDB917 /* Screenshots */,
-				122C6B09261101D100BDB917 /* AppDelegate.swift */,
-				122C6B0B261101D100BDB917 /* ContentView.swift */,
-				122C6B0F261101D500BDB917 /* Assets.xcassets */,
-				122C6B14261101D500BDB917 /* LaunchScreen.storyboard */,
-				122C6B17261101D500BDB917 /* Info.plist */,
+				125F3F922630444900F7AA53 /* App */,
+				125F3F932630445D00F7AA53 /* View */,
 				122C6B11261101D500BDB917 /* Preview Content */,
 			);
 			path = "Reality Glasses";
@@ -84,6 +81,25 @@
 				122C6B202611178B00BDB917 /* 1.png */,
 			);
 			path = Screenshots;
+			sourceTree = "<group>";
+		};
+		125F3F922630444900F7AA53 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				125F3F982630B67B00F7AA53 /* Assets.xcassets */,
+				122C6B09261101D100BDB917 /* AppDelegate.swift */,
+				122C6B17261101D500BDB917 /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		125F3F932630445D00F7AA53 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				122C6B14261101D500BDB917 /* LaunchScreen.storyboard */,
+				122C6B0B261101D100BDB917 /* ContentView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,7 +163,7 @@
 				122C6B212611178B00BDB917 /* 1.png in Resources */,
 				122C6B242611193C00BDB917 /* README.md in Resources */,
 				122C6B13261101D500BDB917 /* Preview Assets.xcassets in Resources */,
-				122C6B10261101D500BDB917 /* Assets.xcassets in Resources */,
+				125F3F992630B67B00F7AA53 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,7 +318,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Reality Glasses/Preview Content\"";
 				DEVELOPMENT_TEAM = N46BF4X43P;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Reality Glasses/Info.plist";
+				INFOPLIST_FILE = "Reality Glasses/App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -323,7 +339,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Reality Glasses/Preview Content\"";
 				DEVELOPMENT_TEAM = N46BF4X43P;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Reality Glasses/Info.plist";
+				INFOPLIST_FILE = "Reality Glasses/App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
